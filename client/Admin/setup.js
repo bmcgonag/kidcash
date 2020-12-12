@@ -13,12 +13,16 @@ Template.setup.onRendered(function() {
     }
 
     Session.set("activeTab", "permissionsSetup");
+    Session.set("isActiveTab", "trans");
 });
 
 Template.setup.helpers({
     needsInterest: function() {
         return Session.get("disabled");
     },
+    isActiveTab: function() {
+        return Session.get("isActiveTab");
+    }
 });
 
 Template.setup.events({
@@ -52,10 +56,13 @@ Template.setup.events({
 
         if (tabClicked == "permissionsSetup") {
             permName.style.display = "block";
+            Session.set("isActiveTab", "perm");
         } else if (tabClicked == "transactionSetup") {
             transName.style.display = "block";
+            Session.set("isActiveTab", "trans");
         } else {
             acctName.style.display = "block";
+            Session.set("isActiveTab", "acct");
         }
         
 

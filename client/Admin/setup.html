@@ -1,9 +1,9 @@
 <template name="setup">
     <div class="container">
         <h2>Setup</h2>
-        <button class="tabNav button button-outline" id="permissionsSetup">Permissions Setup</button>
-        <button class="tabNav button button-outline" id="transactionSetup">Trnsaction Setup</button>
-        <button class="tabNav button button-outline" id="accountTypeSetup">Account Type Setup</button>
+        <button class="tabNav button {{#if $neq isActiveTab "trans"}}button-outline{{/if}}" id="transactionSetup">Trnsaction Setup</button>
+        <button class="tabNav button {{#if $neq isActiveTab "acct"}}button-outline{{/if}}" id="accountTypeSetup">Account Type Setup</button>
+        <button class="tabNav button {{#if $neq isActiveTab "perm"}}button-outline{{/if}}" id="permissionsSetup">Permissions Setup</button>
         <div id="transDiv" class="transDiv cardBorder">
             <h3>Transaction Type Setup</h3>
             <div class="row">
