@@ -1,0 +1,54 @@
+<template name="setup">
+    <div class="container">
+        <h2>Setup</h2>
+        <div class="cardBorder">
+            <h3>Transaction Type Setup</h3>
+            <div class="row">
+                <div class="column">
+                    <label for="transTypeName">Transaction Name:</label>
+                    <input type="text" class="transTypeName" id="transTypeName" placeholder="Transaction Name" />
+                </div>
+                <div class="column">
+                    <label for="transSubType">Transaction Type</label>
+                    <select name="transSubType" id="transSubType" class="transSubType">
+                        <option value="" disabled selected>Choose One...</option>
+                        <option value="Credit">Credit</option>
+                        <option value="Debit">Debit</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="cardBorder">
+            <h3>Account Type Setup</h3>
+            <div class="row">
+                <div class="column">
+                    <label for="acctType">Account Type</label>
+                    <input type="text" id="acctType" class="acctType" placeholder="Account Type" />
+                </div>
+                <div class="column">
+                    <input type="checkbox" class="interestBearing" id="interestBearing" />
+                    <label class="label-inline" for="cinterestBearing">interestBearing</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <label for="interestRate">Interest Rate</label>
+                    <input type="number" class="interestRate" id="interestRate" maxlength="3" /> %
+                </div>
+                <div class="column">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <button id="cancelSetup">Cancel</button>
+            </div>
+            <div class="column">
+                <button id="saveSetup" class="right">Save</button>
+            </div>
+        </div>
+    </div>
+    
+
+</template>
