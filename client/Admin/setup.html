@@ -1,7 +1,10 @@
 <template name="setup">
     <div class="container">
         <h2>Setup</h2>
-        <div class="cardBorder">
+        <button class="tabNav button button-outline" id="permissionsSetup">Permissions Setup</button>
+        <button class="tabNav button button-outline" id="transactionSetup">Trnsaction Setup</button>
+        <button class="tabNav button button-outline" id="accountTypeSetup">Account Type Setup</button>
+        <div id="transDiv" class="transDiv cardBorder">
             <h3>Transaction Type Setup</h3>
             <div class="row">
                 <div class="column">
@@ -17,14 +20,25 @@
                     </select>
                 </div>
             </div>
+            <div class="row">
+                <div class="column">
+                    <table>
+                        <thead>
+                            
+                        </thead>
+                    </table>
+                </div>
+            </div>
         </div>
-        <div class="cardBorder">
+        <div id="accountDiv" class="acctDiv cardBorder">
             <h3>Account Type Setup</h3>
             <div class="row">
                 <div class="column">
                     <label for="acctType">Account Type</label>
                     <input type="text" id="acctType" class="acctType" placeholder="Account Type" />
                 </div>
+            </div>
+            <div class="row">
                 <div class="column">
                     <input type="checkbox" class="interestBearing" id="interestBearing" />
                     <label class="label-inline" for="cinterestBearing">interestBearing</label>
@@ -32,13 +46,18 @@
             </div>
             <div class="row">
                 <div class="column">
-                    <label for="interestRate">Interest Rate</label>
-                    <input type="number" class="interestRate" id="interestRate" maxlength="3" /> %
+                    <label for="interestRate">Interest Rate (%)</label>
+                    <input type="number" class="interestRate" id="interestRate" disabled="{{#if $eq needsInterest false}}disabled{{/if}}" />
                 </div>
+            </div>
+            <div class="row">
                 <div class="column">
                     
                 </div>
             </div>
+        </div>
+        <div id="permissionsDiv" class="permissionsDiv cardBorder">
+
         </div>
         <div class="row">
             <div class="column">

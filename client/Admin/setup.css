@@ -8,3 +8,15 @@
 .right {
     float: right;
 }
+
+.transDiv {
+    display: block;
+}
+
+.acctDiv {
+    display: none;
+}
+
+.permissionsDiv {
+    display: none;
+}
