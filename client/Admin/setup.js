@@ -4,6 +4,7 @@ import { TransTypes } from '../../imports/api/transactionTypes.js';
 Template.setup.onCreated(function() {
     this.subscribe("acctTypes");
     this.subscribe("transTypes");
+    this.subscribe("userList");
 });
 
 Template.setup.onRendered(function() {
@@ -31,6 +32,18 @@ Template.setup.helpers({
     transInfo: function() {
         return TransTypes.find();
     },
+    permInfo: function() {
+        return Meteor.users.find({});
+    },
+    userEmail: function() {
+        let userId = this._id;
+        let emailname = Meteor.users.findOne({ _id: userId }).emails[0].address;
+        return emailname;
+    },
+    userRole: function() {
+        let userId = this._id;
+        return Roles.getRolesForUser(userId);
+    }
 });
 
 Template.setup.events({
@@ -88,6 +101,11 @@ Template.setup.events({
         let acctType = $("#acctType").val();
         let intBearing = $("#interestBearing").prop('checked');
         let intRate = Number($("#interestRate").val());
+        let accrualTime = $("#rateAccrualTime").val();
+
+        if (accrualTime == null) {
+            accrualTime = "";
+        }
 
         // get Permissions values
 
@@ -121,7 +139,7 @@ Template.setup.events({
         }
 
         if (callAcctMethod == true) {
-            Meteor.call("accttypes.add", acctType, intBearing, intRate, function(err, result) {
+            Meteor.call("accttypes.add", acctType, intBearing, intRate, accrualTime, function(err, result) {
                 if (err) {
                     console.log("Error saving Account Type: " + err);
                 } else {

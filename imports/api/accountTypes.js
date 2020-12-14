@@ -17,10 +17,11 @@ Meteor.methods({
     //  add transaction types
     //
     // ******************************************************************
-    'accttypes.add' (type, intBear, intRate) {
+    'accttypes.add' (type, intBear, intRate, accrualTime) {
         check(type, String);
         check(intBear, Boolean);
         check(intRate, Number);
+        check(accrualTime, String);
 
         if (!this.userId) {
             throw new Meteor.Error('User is not allowed to add transaction types to the system, make sure you are logged in.');
@@ -30,14 +31,16 @@ Meteor.methods({
             type: type,
             intBear: intBear,
             intRate: intRate,
-            addedBy: Meteor.userId(),
+            accrualTime: accrualTime,
+            addedBy: Meteor.user().emails[0].address,
         });
     },
-    'accttypes.edit' (typeId, type, inBear, intRate) {
+    'accttypes.edit' (typeId, type, inBear, intRate, accrualTime) {
         check(typeId, String);
         check(type, String);
         check(intBear, Boolean);
         check(intRate, Number);
+        check(accrualTime, String);
 
         if (!this.userId) {
             throw new Meteor.Error('User is not allowed to add transaction types to the system, make sure you are logged in.');
@@ -48,7 +51,8 @@ Meteor.methods({
                 type: type,
                 intBear: intBear,
                 intRate: intRate,
-                editedBy: Meteor.userId(),
+                accrualTime: accrualTime,
+                editedBy: Meteor.user().emails[0].address,
             }
         });
     }

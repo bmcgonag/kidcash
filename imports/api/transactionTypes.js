@@ -28,7 +28,7 @@ Meteor.methods({
         return TransTypes.insert({
             type: type,
             subtype: subType,
-            addedBy: Meteor.userId(),
+            addedBy: Meteor.user().emails[0].address,
         });
     },
     'transTypes.edit' (type_id, type, subType) {
@@ -44,7 +44,7 @@ Meteor.methods({
             $set: {
                 type: type,
                 subtype: subType,
-                editedBy: Meteor.userId(),
+                editedBy: Meteor.user().emails[0].address,
             }
         });
     },

@@ -68,12 +68,25 @@
             </div>
             <div class="row">
                 <div class="column">
+                    <label for="rateAcrrualTime">Accrual Cycle</label>
+                    <select name="rateAccrualTime" id="rateAccrualTime" class="rateAccrualTime">
+                        <option value="" disabled selected>Choose one...</option>
+                        <option value="Daily">Daily</option>
+                        <option value="Weekly">Weekly</option>
+                        <option value="Monthly">Monthly</option>
+                        <option value="Yearly">Yearly</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
                     <table>
                         <thead>
                             <tr>
                                 <th>Account Type</th>
                                 <th>Interest Bearing</th>
                                 <th>Interest Rate</th>
+                                <th>Accrual Cycle</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -83,6 +96,7 @@
                                 <td>{{type}}</td>
                                 <td>{{intBear}}</td>
                                 <td>{{intRate}} %</td>
+                                <td>{{accrualTime}}</td>
                                 <td>N/A</td>
                             </tr>
                             {{/each}}
@@ -95,7 +109,34 @@
             <h3>Permissions</h3>
             <div class="row">
                 <div class="column">
-
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Role</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each permInfo}}
+                                <tr>
+                                    <td>
+                                        {{userEmail}}
+                                    </td>
+                                    <td>
+                                        {{userRole}}
+                                    </td>
+                                    <td>
+                                        <select name="permActions" class="permActions">
+                                            <option value=""></option>
+                                            <option value="Edit">Edit</option>
+                                            <option value="Delete">Delete</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

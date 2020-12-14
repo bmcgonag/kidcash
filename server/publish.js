@@ -9,3 +9,6 @@ Meteor.publish("transTypes", function() {
     return TransTypes.find({});
 });
 
+Meteor.publish('userList', function (){ 
+    return Meteor.users.find({});
+});
