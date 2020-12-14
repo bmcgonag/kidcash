@@ -1,0 +1,37 @@
+<template name="transactions">
+    <div class="container">
+        <h2>Transactions</h2>
+        <div class="row">
+            <div class="column">
+                <button class="button" id="newTransaction">
+                    New Transaction
+                </button>
+            </div>
+        </div>
+        <div id="newTransactionForm" class="newTrans cardBorder">
+            <div class="row">
+                <div class="column">
+                    <label for="newTransType">Transaction Type</label>
+                    <select name="newTransType" id="newTransType">
+                        <option value="" disabled selected>Choose One...</option>
+                        {{#each transTypes}}
+                            <option value="{{type}} - {{subtype}}">{{type}} - {{subtype}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <label for="transAccount">Transaction Account</label>
+                    <select name="transAccount" id="transAccount">
+                        <option value="" disabled selected>Choose One...</option>
+                        {{#each accountType}}
+                            
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</template>

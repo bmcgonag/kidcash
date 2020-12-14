@@ -22,6 +22,8 @@ Template.navbar.events({
             FlowRouter.go('/myaccount');
         } else if (navPage == "dashboardtab") {
             FlowRouter.go('/dashboard');
+        } else if (navPage == "transactionstab") {
+            FlowRouter.go('/transactions');
         }
     },
 });
