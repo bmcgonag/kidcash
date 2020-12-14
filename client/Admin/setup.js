@@ -1,7 +1,9 @@
 import { AcctTypes } from '../../imports/api/accountTypes.js';
+import { TransTypes } from '../../imports/api/transactionTypes.js';
 
 Template.setup.onCreated(function() {
-
+    this.subscribe("acctTypes");
+    this.subscribe("transTypes");
 });
 
 Template.setup.onRendered(function() {
@@ -22,7 +24,13 @@ Template.setup.helpers({
     },
     isActiveTab: function() {
         return Session.get("isActiveTab");
-    }
+    },
+    acctInfo: function() {
+        return AcctTypes.find();
+    },
+    transInfo: function() {
+        return TransTypes.find();
+    },
 });
 
 Template.setup.events({
@@ -64,7 +72,62 @@ Template.setup.events({
             acctName.style.display = "block";
             Session.set("isActiveTab", "acct");
         }
-        
+    },
+    'click #saveSetup' (event) {
+        event.preventDefault();
 
-    }
+        let callTransMethod;
+        let callAcctMethod;
+        let callPermMethod;
+
+        // first get Transaction Type values
+        let transName = $("#transTypeName").val();
+        let transSub = $("#transSubType").val();
+
+        // next get Account Type values
+        let acctType = $("#acctType").val();
+        let intBearing = $("#interestBearing").prop('checked');
+        let intRate = Number($("#interestRate").val());
+
+        // get Permissions values
+
+
+
+        // check each section to validate whether it should be saved or not
+        // then call only the methods for saving those sections that have 
+        // new values or edited values.
+
+        if (transName == null || transName == "") {
+            callTransMethod = false;
+        } else {
+            callTransMethod = true;
+        }
+
+        if (acctType == null || acctType == "") {
+            callAcctMethod = false;
+        } else {
+            callAcctMethod = true;
+        }
+
+        // now call the methods, first checking if they should be called.
+        if (callTransMethod == true) {
+            Meteor.call("transTypes.add", transName, transSub, function(err, result) {
+                if (err) {
+                    console.log("Error saving to Transaction Types: " + err);
+                } else {
+                    console.log("Successfully Saved Transaction Type.");
+                }
+            })
+        }
+
+        if (callAcctMethod == true) {
+            Meteor.call("accttypes.add", acctType, intBearing, intRate, function(err, result) {
+                if (err) {
+                    console.log("Error saving Account Type: " + err);
+                } else {
+                    console.log("Successfully Saved Account Type");
+                }
+            })
+        }
+    },
 });

@@ -17,7 +17,7 @@ Meteor.methods({
     //  add transaction types
     //
     // ******************************************************************
-    'transtypes.add' (type, subType) {
+    'transTypes.add' (type, subType) {
         check(type, String);
         check(subType, String);
 
@@ -25,7 +25,7 @@ Meteor.methods({
             throw new Meteor.Error('User is not allowed to add transaction types to the system, make sure you are logged in.');
         }
 
-        return TransType.insert({
+        return TransTypes.insert({
             type: type,
             subtype: subType,
             addedBy: Meteor.userId(),
@@ -40,7 +40,7 @@ Meteor.methods({
             throw new Meteor.Error('User is not allowed to add transaction types to the system, make sure you are logged in.');
         }
 
-        return TransType.update({ _id: type_id }, {
+        return TransTypes.update({ _id: type_id }, {
             $set: {
                 type: type,
                 subtype: subType,

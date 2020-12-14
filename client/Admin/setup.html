@@ -1,5 +1,6 @@
 <template name="setup">
     <div class="container">
+    {{#if isInRole 'Admin'}}
         <h2>Setup</h2>
         <button class="tabNav button {{#if $neq isActiveTab "trans"}}button-outline{{/if}}" id="transactionSetup">Trnsaction Setup</button>
         <button class="tabNav button {{#if $neq isActiveTab "acct"}}button-outline{{/if}}" id="accountTypeSetup">Account Type Setup</button>
@@ -15,6 +16,8 @@
                     <label for="transSubType">Transaction Type</label>
                     <select name="transSubType" id="transSubType" class="transSubType">
                         <option value="" disabled selected>Choose One...</option>
+                        <option value="Deposit">Deposit</option>
+                        <option value="Withdrawal">Withdrawal</option>
                         <option value="Credit">Credit</option>
                         <option value="Debit">Debit</option>
                     </select>
@@ -24,8 +27,21 @@
                 <div class="column">
                     <table>
                         <thead>
-                            
+                            <tr>
+                                <th>Type</th>
+                                <th>Sub-type</th>
+                                <th>Actions</th>
+                            </tr>
                         </thead>
+                        <tbody>
+                            {{#each transInfo}}
+                            <tr>
+                                <td>{{type}}</td>
+                                <td>{{subtype}}</td>
+                                <td>N/A</td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -41,7 +57,7 @@
             <div class="row">
                 <div class="column">
                     <input type="checkbox" class="interestBearing" id="interestBearing" />
-                    <label class="label-inline" for="cinterestBearing">interestBearing</label>
+                    <label class="label-inline" for="interestBearing">Interest Bearing</label>
                 </div>
             </div>
             <div class="row">
@@ -52,12 +68,36 @@
             </div>
             <div class="row">
                 <div class="column">
-                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Account Type</th>
+                                <th>Interest Bearing</th>
+                                <th>Interest Rate</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each acctInfo}}
+                            <tr>
+                                <td>{{type}}</td>
+                                <td>{{intBear}}</td>
+                                <td>{{intRate}} %</td>
+                                <td>N/A</td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
         <div id="permissionsDiv" class="permissionsDiv cardBorder">
+            <h3>Permissions</h3>
+            <div class="row">
+                <div class="column">
 
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="column">
@@ -67,7 +107,9 @@
                 <button id="saveSetup" class="right">Save</button>
             </div>
         </div>
+    {{else}}
+        <h2>Not Permitted!</h2>
+        <p>You appear to have reached a page your user is not permitted to access. If you believe this is a mistake, please contact your system administrator for assistance.</p>
+    {{/if}}
     </div>
-    
-
 </template>
