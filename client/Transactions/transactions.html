@@ -25,10 +25,22 @@
                     <label for="transAccount">Transaction Account</label>
                     <select name="transAccount" id="transAccount">
                         <option value="" disabled selected>Choose One...</option>
-                        {{#each accountType}}
-                            
+                        {{#each accountList}}
+                            <option value="{{accountHolder}} - {{accountType}}">{{accountHolder}} - {{accountType}}</option>
                         {{/each}}
                     </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <label for="transAmount">Transaction Amount</label>
+                    <input type="number" id="transAmount" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <button class="button" id="cancelTransaction">Cancel</button>
+                    <button class="button" id="saveTransaction">Save</button>
                 </div>
             </div>
         </div>

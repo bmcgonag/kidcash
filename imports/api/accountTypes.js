@@ -24,7 +24,7 @@ Meteor.methods({
         check(accrualTime, String);
 
         if (!this.userId) {
-            throw new Meteor.Error('User is not allowed to add transaction types to the system, make sure you are logged in.');
+            throw new Meteor.Error('User is not allowed to add account types to the system, make sure you are logged in.');
         }
 
         return AcctTypes.insert({
@@ -43,7 +43,7 @@ Meteor.methods({
         check(accrualTime, String);
 
         if (!this.userId) {
-            throw new Meteor.Error('User is not allowed to add transaction types to the system, make sure you are logged in.');
+            throw new Meteor.Error('User is not allowed to edit account types to the system, make sure you are logged in.');
         }
 
         return AcctTypes.update({ _id: typeId }, {
@@ -55,5 +55,5 @@ Meteor.methods({
                 editedBy: Meteor.user().emails[0].address,
             }
         });
-    }
+    },
 });

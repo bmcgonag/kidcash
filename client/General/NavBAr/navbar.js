@@ -24,6 +24,9 @@ Template.navbar.events({
             FlowRouter.go('/dashboard');
         } else if (navPage == "transactionstab") {
             FlowRouter.go('/transactions');
+        } else if (navPage == "logOut") {
+            FlowRouter.go('/');
+            Meteor.logout();
         }
     },
 });

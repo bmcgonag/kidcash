@@ -1,9 +1,34 @@
 <template name="myAccount">
     <div class="container">
         <h2>My Account</h2>
-        <div class="row cardBorder">
+        <h3>Current Total Balance</h3>
+        <h3>$ {{myAcctTotal}}</h3>
+        <div class="row">
             <div class="column">
-                Current Balance:   <h2>{{yourBalance}}</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Account Type</th>
+                            <th>Balance</th>
+                            <th>I want to</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each myAccountInfo}}
+                            <tr>
+                                <td>{{accountType}}</td>
+                                <td>$ {{accountBalance}}</td>
+                                <td>
+                                    <select name="myAcctActions" id="myAcctActions">
+                                        <option value="" disabled selected></option>
+                                        <option value="Transfer">Transfer Money</option>
+                                        <option value="Borrow">Borrow Money</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
