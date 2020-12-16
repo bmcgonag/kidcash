@@ -9,14 +9,10 @@
                             Your Balance:
                         </div>
                         <div class="column">
-                            <h3>$ 24.00</h3>
+                            <h3>$ {{totalBal}}</h3>
                         </div>
                     </div>
                 </div>
-                
-            </div>
-            <div class="column">
-
             </div>
         </div>   
         <br>  
@@ -33,13 +29,18 @@
                             <th>Type</th>
                             <th>Date</th>
                             <th>Amount</th>
-                            <th>Remaining Balance</th>
+                            <th>Account</th>
                         </tr>
                     </thead>
                     <tbody>
+                        {{#each myTrans}}
                         <tr>
-        
+                            <td>{{transType}}</td>
+                            <td>{{myTransDate}}</td>
+                            <td>{{transAmount}}</td>
+                            <td>{{transAccountType}}</td>
                         </tr>
+                        {{/each}}
                     </tbody>
                 </table>
             </div>

@@ -15,7 +15,7 @@
                     <select name="newTransType" id="newTransType">
                         <option value="" disabled selected>Choose One...</option>
                         {{#each transTypes}}
-                            <option value="{{type}} - {{subtype}}">{{type}} - {{subtype}}</option>
+                            <option value="{{type}}">{{type}} - {{subtype}}</option>
                         {{/each}}
                     </select>
                 </div>
@@ -26,7 +26,7 @@
                     <select name="transAccount" id="transAccount">
                         <option value="" disabled selected>Choose One...</option>
                         {{#each accountList}}
-                            <option value="{{accountHolder}} - {{accountType}}">{{accountHolder}} - {{accountType}}</option>
+                            <option value="{{accountHolderId}} - {{accountHolder}} - {{accountType}} - {{_id}}">{{accountHolder}} - {{accountType}}</option>
                         {{/each}}
                     </select>
                 </div>

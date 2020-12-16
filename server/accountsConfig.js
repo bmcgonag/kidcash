@@ -8,7 +8,7 @@ var postSignUp = function(userId, info) {
     }
 
     // Next - let's add the user to an Account record with $0 to start.
-    Meteor.call("myAccount.add", userId, "General", 0, function(err, result) {
+    Meteor.call("newMyAccount.add", userId, "General", "G0", 0, function(err, result) {
         if (err) {
             console.log("Error cretaing new account after sign up: " + err);
         } else {
