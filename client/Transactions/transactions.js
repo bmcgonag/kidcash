@@ -63,8 +63,13 @@ Template.transactions.events({
                     Meteor.call('myAccount.transaction', transAmt, transAcctId, function(error, results) {
                         if (error) {
                             console.log("Error updating myAccount during transaction: " + error);
+                            showSnackbar("Error Making Transaction!", "red");
                         } else {
+                            showSnackbar("Transaction Successful", "green");
                             console.log("Successfully updated myAccount balance.");
+                            $("#newTransType").val("");
+                            $("#transAccount").val("");
+                            $("#transAmount").val("");
                         }
                     });
                 }

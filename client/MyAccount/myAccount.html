@@ -4,7 +4,7 @@
         <div class="row">
             <div class="column">
                 <h3>Current Total Balance</h3>
-                <h3>$ {{myAcctTotal}}</h3>
+                <h3>$ <span class="{{#if $lt myAcctTotal 0}}red{{else}}green{{/if}}">{{myAcctTotal}}</span></h3>
             </div>
             <div class="column">
                 <button class="button-large" id="BuyorPay">Buy Something</button>
@@ -25,7 +25,7 @@
                         {{#each myAccountInfo}}
                             <tr>
                                 <td>{{accountType}}</td>
-                                <td>$ {{accountBalance}}</td>
+                                <td>$ <span class="{{#if $lt accountBalance 0}}red{{else}}black{{/if}}">{{accountBalance}}</span></td>
                                 <td>
                                     <select name="myAcctActions" id="myAcctActions">
                                         <option value="" disabled selected></option>

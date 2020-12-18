@@ -9,7 +9,7 @@
                             Your Balance:
                         </div>
                         <div class="column">
-                            <h3>$ {{totalBal}}</h3>
+                            <h3>$ <span class="{{#if $lt totalBal 0}}red{{else}}green{{/if}}">{{totalBal}}</span></h3>
                         </div>
                     </div>
                 </div>
@@ -23,26 +23,28 @@
         </div>
         <div class="row">
             <div class="column">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Type</th>
-                            <th>Date</th>
-                            <th>Amount</th>
-                            <th>Account</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {{#each myTrans}}
-                        <tr>
-                            <td>{{transType}}</td>
-                            <td>{{myTransDate}}</td>
-                            <td>{{transAmount}}</td>
-                            <td>{{transAccountType}}</td>
-                        </tr>
-                        {{/each}}
-                    </tbody>
-                </table>
+                <div class="dashTable">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Account</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each myTrans}}
+                            <tr>
+                                <td>{{transType}}</td>
+                                <td>{{myTransDate}}</td>
+                                <td><span class="{{#if $lt transAmount 0}}red{{else}}green{{/if}}">{{transAmount}}</span></td>
+                                <td>{{transAccountType}}</td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

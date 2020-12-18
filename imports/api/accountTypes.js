@@ -53,7 +53,23 @@ Meteor.methods({
                 intRate: intRate,
                 accrualTime: accrualTime,
                 editedBy: Meteor.user().emails[0].address,
+                lastEditedOn: new Date(),
             }
         });
     },
+    "accttypes.delete" (acctTypeId) {
+        check(acctTypeId, String);
+
+        if (!this.userId) {
+            throw new Meteor.Error('User is not allowed to edit account types to the system, make sure you are logged in.');
+        }
+
+        return AcctTypes.update({ _id: acctTypeId }, {
+            $set: {
+                isDelete: true,
+                deletedBy: Meteor.user().emails[0].address,
+                deletedOn: new Date(),
+            }
+        })
+    }
 });

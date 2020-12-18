@@ -4,7 +4,7 @@
         <h2>Setup</h2>
         <button class="tabNav button {{#if $neq isActiveTab "trans"}}button-outline{{/if}}" id="transactionSetup">Trnsaction Setup</button>
         <button class="tabNav button {{#if $neq isActiveTab "acct"}}button-outline{{/if}}" id="accountTypeSetup">Account Type Setup</button>
-        <button class="tabNav button {{#if $neq isActiveTab "perm"}}button-outline{{/if}}" id="permissionsSetup">Permissions Setup</button>
+        <button class="tabNav button {{#if $neq isActiveTab "perm"}}button-outline{{/if}}" id="permissionsSetup">Accounts Setup</button>
         <div id="transDiv" class="transDiv cardBorder">
             <h3>Transaction Type Setup</h3>
             <div class="row">
@@ -23,26 +23,34 @@
                     </select>
                 </div>
             </div>
-            <div class="row">
-                <div class="column">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Type</th>
-                                <th>Sub-type</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {{#each transInfo}}
-                            <tr>
-                                <td>{{type}}</td>
-                                <td>{{subtype}}</td>
-                                <td>N/A</td>
-                            </tr>
-                            {{/each}}
-                        </tbody>
-                    </table>
+            <div class="transTable">
+                <div class="row">
+                    <div class="column">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Sub-type</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each transInfo}}
+                                <tr>
+                                    <td>{{type}}</td>
+                                    <td>{{subtype}}</td>
+                                    <td>
+                                        <select name="transActions" class="transActions" id="{{_id}}">
+                                            <option value=""></option>
+                                            <option value="Edit">Edit</option>
+                                            <option value="Delete">Delete</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -97,7 +105,13 @@
                                 <td>{{intBear}}</td>
                                 <td>{{intRate}} %</td>
                                 <td>{{accrualTime}}</td>
-                                <td>N/A</td>
+                                <td>
+                                    <select name="acctActions" class="acctActions" id="{{_id}}">
+                                        <option value=""></option>
+                                        <option value="Edit">Edit</option>
+                                        <option value="Delete">Delete</option>
+                                    </select>
+                                </td>
                             </tr>
                             {{/each}}
                         </tbody>
@@ -127,8 +141,9 @@
                                         {{userRole}}
                                     </td>
                                     <td>
-                                        <select name="permActions" class="permActions">
+                                        <select name="permActions" class="permActions" id="{{_id}}">
                                             <option value=""></option>
+                                            <option value="Add Account Type">Add Account Type</option>
                                             <option value="Edit">Edit</option>
                                             <option value="Delete">Delete</option>
                                         </select>
@@ -143,9 +158,7 @@
         <div class="row">
             <div class="column">
                 <button id="cancelSetup">Cancel</button>
-            </div>
-            <div class="column">
-                <button id="saveSetup" class="right">Save</button>
+                <button id="saveSetup">Save</button>
             </div>
         </div>
     {{else}}
@@ -153,4 +166,5 @@
         <p>You appear to have reached a page your user is not permitted to access. If you believe this is a mistake, please contact your system administrator for assistance.</p>
     {{/if}}
     </div>
+    {{> snackbar}}
 </template>

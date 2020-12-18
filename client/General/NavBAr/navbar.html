@@ -3,8 +3,10 @@
     <ul>
       <li class="navItem" id="hometab"><a class="active" href="#home">Home</a></li>
       <li class="navItem" id="accounttab"><a href="#myAccount" id="myAccount">My Account</a></li>
+      {{#if isInRole 'Admin'}}
       <li class="navItem" id="setuptab"><a href="#adminSetup">Setup</a></li>
       <li class="navItem" id="transactionstab"><a href="#usertransactions">Transactions</a></li>
+      {{/if}}
       <li class="navItem" id="logOut"><a href="#logOut">Log Out</a></li>
     </ul>
   </div>

@@ -132,20 +132,84 @@ Template.setup.events({
             Meteor.call("transTypes.add", transName, transSub, function(err, result) {
                 if (err) {
                     console.log("Error saving to Transaction Types: " + err);
+                    showSnackbar("Error Saving Transaction Type", "red");
                 } else {
                     console.log("Successfully Saved Transaction Type.");
+                    showSnackbar("Successfully Saved Transaction Type", "green");
                 }
-            })
+            });
         }
 
         if (callAcctMethod == true) {
             Meteor.call("accttypes.add", acctType, intBearing, intRate, accrualTime, function(err, result) {
                 if (err) {
                     console.log("Error saving Account Type: " + err);
+                    showSnackbar("Error Saving Account Type", "red");
                 } else {
                     console.log("Successfully Saved Account Type");
+                    showSnackbar("Successfully Saved Account Type", "green")
                 }
-            })
+            });
+        }
+    },
+    'change .permActions' (event) {
+        let action = $("#" + this._id).val();
+        console.log('Selected Action: ' + action);
+
+        if (action == "Add Account Type") {
+            // route to the "Add Account View"
+            Session.set("addAccountForUserId", this._id);
+            FlowRouter.go('/addAccount');
+        } else if (action == "Edit") {
+
+        } else if (action == "Delete") {
+            deleteValues("users", this._id);
+        } else {
+            showSnackbar("No action was determined.", "Red");
+        }
+    },
+    'change .acctActions' (event) {
+        let action = $("#" + this._id).val();
+        if (action == "Edit") {
+
+        } else if (action == "Delete") {
+            deleteValues("accountTypes", this._id);
+        } else {
+            showSnackbar("No action was determined.", "Red");
+        }
+    },
+    'change .transActions' (event) {
+        let action = $("#" + this._id).val();
+        if (action == "Edit") {
+
+        } else if (action == "Delete") {
+            deleteValues("transactionTypes", this._id);
+        } else {
+            showSnackbar("No action was determined.", "Red");
         }
     },
 });
+
+var deleteValues = function(collName, collId) {
+    if (collName == "accountTypes") {
+        Meteor.call("accttypes.delete", collId, function(err, result) {
+            if (err) {
+                showSnackbar("Error Deleting Account Type", "red");
+                console.log("Error deleting Account Type: " + err);
+            } else {
+                showSnackbar("Deleted Account Type Successfully", "green");
+            }
+        });
+    } else if (collName == "transactionTypes") {
+        Meteor.call("transTypes.delete", collId, function(err, result) {
+            if (err) {
+                showSnackbar("Error Deleting Transaction Type", "red");
+                console.log("Error deleting Transaction Type: " + err);
+            } else {
+                showSnackbar("Deleted Transaction Type Successfully", "green");
+            }
+        });
+    } else if (collName == "users") {
+        console.log("wanting to delete a user.");
+    }
+}

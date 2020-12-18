@@ -45,6 +45,22 @@ Meteor.methods({
                 type: type,
                 subtype: subType,
                 editedBy: Meteor.user().emails[0].address,
+                editedOn: new Date(),
+            }
+        });
+    },
+    'transTypes.delete' (type_id) {
+        check(type_id, String);
+
+        if (!this.userId) {
+            throw new Meteor.Error('User is not allowed to add transaction types to the system, make sure you are logged in.');
+        }
+
+        return TransTypes.update({ _id: type_id }, {
+            $set: {
+                deleted: true,
+                deletedBy: Meteor.user().emails[0].address,
+                deletedOn: new Date(),
             }
         });
     },
