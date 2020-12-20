@@ -3,8 +3,43 @@
         <h2>Add Account for User</h2>
         <div class="row">
             <div class="column">
-                <label for="typeToAdd">Account Type to Add</label>
+                <select name="currUsers" id="currUsers">
+                    <option value="" disabled selected>Choose One...</option>
+                    {{#each currentAccounts}}
+                        <option value="{{accountHolderId}}">{{accountHolder}}</option>
+                    {{/each}}
+                </select>
             </div>
         </div>
+        {{#if $eq accountSelected true}}
+        <hr />
+        <div class="userDetail" id="userDetail">
+            <div class="row">
+                <div class="column">
+                    <h3>Current Account Information</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Current Account Type</th>
+                                <th>Current Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each currentAccounts}}
+                            <tr>
+                                <td>{{accountType}}</td>
+                                <td>{{accountBalance}}</td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        {{/if}}
     </div>
 </template>
